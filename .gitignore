@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.data/
+.env
+build/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-preview/
+
+# E2E screenshots & OS noise
+e2e/*.png
+.DS_Store
+Thumbs.db

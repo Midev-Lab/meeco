@@ -1,0 +1,33 @@
+# Render blueprint: the front end as a static site (free, never sleeps).
+# The API runs on AWS Lambda (see README, "Go live"). The Render web service below is the fallback if you would
+# rather host it there: uncomment it, set the same environment variables, and expect a ~1 min wake-up on the free plan.
+services:
+  - type: web
+    name: meeco-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - { key: VITE_API_URL, sync: false }   # the Lambda Function URL printed by deploy_lambda.py
+
+  # - type: web
+  #   name: meeco-api
+  #   runtime: python
+  #   rootDir: backend
+  #   plan: free
+  #   buildCommand: pip install -r requirements.txt
+  #   startCommand: uvicorn app.main:create_app --factory --host 0.0.0.0 --port $PORT
+  #   healthCheckPath: /health
+  #   envVars:
+  #     - { key: PYTHON_VERSION, value: 3.12.7 }
+  #     - { key: ALLOWED_ORIGINS, sync: false }
+  #     - { key: STORAGE_BACKEND, value: s3 }
+  #     - { key: S3_BUCKET, sync: false }
+  #     - { key: AWS_REGION, sync: false }
+  #     - { key: AWS_ACCESS_KEY_ID, sync: false }
+  #     - { key: AWS_SECRET_ACCESS_KEY, sync: false }
+  #     - { key: TRANSCRIBER, value: assemblyai }
+  #     - { key: ASSEMBLYAI_API_KEY, sync: false }
+  #     - { key: LLM_PROVIDER, value: groq }
+  #     - { key: GROQ_API_KEY, sync: false }

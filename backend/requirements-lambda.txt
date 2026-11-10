@@ -1,0 +1,5 @@
+# What the Lambda package needs (boto3 is already in the Lambda runtime; uvicorn is not needed)
+fastapi>=0.115
+httpx>=0.27
+pydantic-settings>=2.4
+mangum>=0.17
